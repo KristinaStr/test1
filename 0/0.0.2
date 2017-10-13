@@ -1,0 +1,33 @@
+#include <iostream>
+#include <sstream>
+using namespace std;
+
+int main (){
+	string stroka; //объявление строки
+	int a[10]; int i, j; int k=0; // объявление пременных и массива
+	getline(cin, stroka); // считываем строку
+	istringstream stream(stroka);// переводим в поток
+	for(i=0; i<10; ++i){
+	    if(!(stream>>a[i])){
+	        cout<<"An error has occurred whil reading the input sequnence."<<endl; // введены не все символы
+	        return -1;
+	    }
+	    if(k>a[i]){
+	        cout<<"The input sequence must be non-decreasing."<<endl; //проверка на неубывание
+	        return -1;
+	    }
+	    k=a[i];
+	}
+	int b;
+	cin>>b; // вводим контрольный элемент
+	for(i=0; i<10; ++i){
+	    for(j=0; j<10; ++j){
+	        if((a[i]+a[j])==b){
+	            cout<<a[i]<<" "<<a[j];//  перебор всех значений и их сравнение с контрольным
+	            return 0;
+	        }
+	    }
+	}
+	cout<<"There is no such pair of numbers."<<endl;// если ничего не найдено
+	return -1;
+}
